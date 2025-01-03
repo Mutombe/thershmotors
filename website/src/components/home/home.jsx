@@ -150,7 +150,7 @@ const HomePage = () => {
   );
 };
 
-const ServiceCard = ({ icon: Icon, title, description, index }) => {
+const ServiceCard = ({ icon: Icon, title, description, index, link }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -165,7 +165,7 @@ const ServiceCard = ({ icon: Icon, title, description, index }) => {
       <h3 className="text-xl font-semibold mb-2 text-blue-900">{title}</h3>
       <p className="text-gray-600 mb-4">{description}</p>
       <Link
-        to="/services"
+        to={link}
         className="text-blue-900 font-medium flex items-center group-hover:space-x-2"
       >
         <span>Learn More</span>
@@ -190,19 +190,22 @@ const FeatureCard = ({ icon: Icon, title, description }) => {
 const services = [
   {
     icon: Car,
-    title: "Vehicle Sales",
+        title: "Vehicle Sales",
+    link: "/vehicles",
     description:
       "Find your perfect Volvo from our carefully curated selection of premium vehicles",
   },
   {
     icon: HammerIcon,
-    title: "Genuine Spares",
+      title: "Genuine Spares",
+    link: "/spares",
     description:
       "Access authentic Volvo parts ensuring optimal performance and reliability",
   },
   {
     icon: Calculator,
-    title: "Expert Valuation",
+      title: "Expert Valuation",
+    link: "/valuation",
     description:
       "Get accurate market valuations from our certified Volvo specialists",
   },

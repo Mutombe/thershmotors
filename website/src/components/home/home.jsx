@@ -13,8 +13,11 @@ import {
   Clock,
   MessageSquare,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
+
+  const navigate = useNavigate();
   return (
     <div className="w-full">
       {/* Hero Section */}
@@ -42,7 +45,8 @@ const HomePage = () => {
               to expert valuations and premium vehicle sales.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <motion.button
+                          <motion.button
+                              onClick={() => navigate('/services')}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="bg-white text-blue-900 px-8 py-3 rounded-full font-semibold flex items-center justify-center space-x-2 group"
@@ -50,7 +54,8 @@ const HomePage = () => {
                 <span>Explore Services</span>
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </motion.button>
-              <motion.button
+                          <motion.button
+                              onClick={() => navigate('/contact')}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold"

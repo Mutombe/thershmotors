@@ -32,11 +32,11 @@ const App = () => {
           <AnimatePresence mode="wait">
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/vehicles" element={<VehiclesPage />} />
-              <Route path="/spares" element={<SparePartsPage />} />
-              <Route path="/services" element={<UpdatedServicesPage />} />
-              <Route path="/valuation" element={<ValuationPage />} />
-              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/volvo-vehicles" element={<VehiclesPage />} />
+              <Route path="/volvo-spares" element={<SparePartsPage />} />
+              <Route path="/volvo-specialist-services" element={<UpdatedServicesPage />} />
+              <Route path="/volvo-valuation" element={<ValuationPage />} />
+              <Route path="/thersh-motors-contact" element={<ContactPage />} />
             </Routes>
           </AnimatePresence>
         </main>

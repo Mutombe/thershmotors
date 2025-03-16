@@ -23,11 +23,11 @@ const Navigation = () => {
 
   const navItems = [
     { path: '/', label: 'Home' },
-    { path: '/services', label: 'Services' },
-    { path: '/vehicles', label: 'Vehicles' },
-    { path: '/spares', label: 'Spare Parts' },
-    { path: '/valuation', label: 'Valuation' },
-    { path: '/contact', label: 'Contact' },
+    { path: '/volvo-specialist-services', label: 'Services' },
+    { path: '/volvo-vehicles', label: 'Vehicles' },
+    { path: '/volvo-spares', label: 'Spare Parts' },
+    { path: '/volvo-valuation', label: 'Valuation' },
+    { path: '/thersh-motors-contact', label: 'Contact' },
   ];
 
   return (

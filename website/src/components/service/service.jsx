@@ -102,30 +102,40 @@ const ServicesPage = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative py-20 bg-blue-900">
-        <div className="container mx-auto px-4">
-          <div className="text-center text-white max-w-3xl mx-auto">
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-4xl md:text-5xl font-bold mb-6"
-            >
-              Expert Volvo Services
-            </motion.h1>
-            <p className="text-xl text-blue-100 mb-8">
-              Comprehensive care services delivered by certified Volvo specialists
-            </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              onClick={()=>navigate("/thersh-motors-contact")}
-              whileTap={{ scale: 0.95 }}
-              className="bg-white text-blue-900 px-8 py-3 rounded-full font-semibold"
-            >
-              Schedule Service
-            </motion.button>
-          </div>
-        </div>
-      </section>
+{/* Hero Section */}
+<section 
+  className="relative py-20 bg-no-repeat bg-cover bg-center"
+  style={{
+    backgroundImage: "url('/fleet.webp')",
+    backgroundBlendMode: "overlay",
+  }}
+>
+  {/* Overlay for better text contrast */}
+  <div className="absolute inset-0 bg-blue-900 opacity-90"></div>
+  
+  <div className="container mx-auto px-4 relative z-10">
+    <div className="text-center text-white max-w-3xl mx-auto">
+      <motion.h1 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="text-4xl md:text-5xl font-bold mb-6"
+      >
+        Expert Volvo Services
+      </motion.h1>
+      <p className="text-xl text-blue-100 mb-8">
+        Comprehensive care services delivered by certified Volvo specialists
+      </p>
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        onClick={()=>navigate("/thersh-motors-contact")}
+        whileTap={{ scale: 0.95 }}
+        className="bg-white text-blue-900 px-8 py-3 rounded-full font-semibold shadow-md hover:shadow-lg transition-shadow"
+      >
+        Schedule Service
+      </motion.button>
+    </div>
+  </div>
+</section>
 
       {/* Service Benefits */}
       <section className="py-16 bg-gray-50">

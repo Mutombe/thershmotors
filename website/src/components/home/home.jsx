@@ -1,5 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
   Car,
@@ -15,13 +14,162 @@ import {
   Clock,
   MessageSquare,
 } from "lucide-react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+
+const HeroCarousel = ({ navigate }) => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  
+  // Carousel images - replace with your actual Volvo images
+  const carouselImages = [
+    {
+      id: 1,
+      src: "/volvo.jpg",
+      alt: "Volvo Fleet Flagship Models"
+    },
+    {
+      id: 2,
+      src: "/fleet.webp",
+      alt: "Volvo Service Center"
+    },
+    {
+      id: 3,
+      src: "/home3.jpg",
+      alt: "Volvo Parts Department"
+    },
+    {
+      id: 4,
+      src: "/home4.avif",
+      alt: "Volvo Certified Specialists"
+    },
+    {
+      id: 5,
+      src: "/home6.jpg",
+      alt: "Volvo Premium Interior"
+    }
+  ];
+  
+  // Auto-advance carousel
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev === carouselImages.length - 1 ? 0 : prev + 1));
+    }, 5000);
+    
+    return () => clearInterval(interval);
+  }, [carouselImages.length]);
+  
+  // Navigation functions
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev === carouselImages.length - 1 ? 0 : prev + 1));
+  };
+  
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? carouselImages.length - 1 : prev - 1));
+  };
+  
+  return (
+    <section className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Carousel images */}
+      <AnimatePresence>
+        {carouselImages.map((image, index) => (
+          index === currentSlide && (
+            <motion.div
+              key={image.id}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1 }}
+              className="absolute inset-0"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-black/50 z-10" />
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="w-full h-full object-cover transition-transform duration-8000 ease-in-out transform scale-105"
+              />
+            </motion.div>
+          )
+        ))}
+      </AnimatePresence>
+      
+      {/* Navigation arrows */}
+      <button 
+        onClick={prevSlide} 
+        className="absolute left-4 z-30 bg-white/10 backdrop-blur-sm hover:bg-white/20 p-2 rounded-full text-white transition-all duration-300"
+        aria-label="Previous slide"
+      >
+        <ChevronLeft className="h-6 w-6" />
+      </button>
+      <button 
+        onClick={nextSlide} 
+        className="absolute right-4 z-30 bg-white/10 backdrop-blur-sm hover:bg-white/20 p-2 rounded-full text-white transition-all duration-300"
+        aria-label="Next slide"
+      >
+        <ChevronRight className="h-6 w-6" />
+      </button>
+      
+      {/* Indicator dots */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 flex space-x-2">
+        {carouselImages.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentSlide(index)}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              currentSlide === index ? 'bg-white scale-125' : 'bg-white/50'
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+      
+      {/* Content */}
+      <div className="container mx-auto px-4 relative z-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="max-w-2xl text-white space-y-6"
+        >
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+            Your Trusted Partner for All Things Volvo
+          </h1>
+          <p className="text-xl text-blue-100">
+            Experience excellence in Volvo services, from genuine spare parts
+            to expert valuations and premium vehicle sales.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <motion.button
+              onClick={() => navigate('/volvo-specialist-services')}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-white text-blue-900 px-8 py-3 rounded-full font-semibold flex items-center justify-center space-x-2 group shadow-md"
+            >
+              <span>Explore Services</span>
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </motion.button>
+            <motion.button
+              onClick={() => navigate('/thersh-motors-contact')}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold backdrop-blur-sm"
+            >
+              Contact Us
+            </motion.button>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
 
 const HomePage = () => {
 
   const navigate = useNavigate();
   return (
     <div className="w-full">
+      <HeroCarousel />
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center">
         <div className="absolute inset-0">

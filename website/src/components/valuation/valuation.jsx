@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 import {
   Car,
   Cog,
@@ -14,18 +14,27 @@ import {
   ArrowRight,
   Plus,
   Minus,
-  CheckCircle2
-} from 'lucide-react';
-import { Link } from 'react-router-dom';
+  CheckCircle2,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
 const ValuationPage = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative py-20 bg-blue-900">
-        <div className="container mx-auto px-4">
+      <section
+        className="relative py-20 bg-no-repeat bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/fleet.webp')",
+          backgroundBlendMode: "overlay",
+        }}
+      >
+        {/* Overlay for better text contrast */}
+        <div className="absolute inset-0 bg-blue-900 opacity-90"></div>
+
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center text-white">
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="text-4xl md:text-5xl font-bold mb-6"
@@ -33,13 +42,14 @@ const ValuationPage = () => {
               Expert Volvo Vehicle Valuation
             </motion.h1>
             <p className="text-xl text-blue-100 mb-8">
-              Get an accurate market value for your Volvo from our certified specialists
+              Get an accurate market value for your Volvo from our certified
+              specialists
             </p>
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="bg-white rounded-xl p-8 text-left"
+              className="bg-white rounded-xl p-8 text-left shadow-lg"
             >
               <ValuationForm />
             </motion.div>
@@ -83,8 +93,16 @@ const ValuationForm = () => {
   const totalSteps = 3;
 
   const models = [
-    'XC90', 'XC60', 'XC40', 'S90', 'S60', 'V90', 'V60',
-    'C40 Recharge', 'XC40 Recharge', 'S90 Recharge'
+    "XC90",
+    "XC60",
+    "XC40",
+    "S90",
+    "S60",
+    "V90",
+    "V60",
+    "C40 Recharge",
+    "XC40 Recharge",
+    "S90 Recharge",
   ];
 
   return (
@@ -94,8 +112,8 @@ const ValuationForm = () => {
           <div
             key={index}
             className={`h-1 flex-1 ${
-              index + 1 <= step ? 'bg-blue-900' : 'bg-gray-200'
-            } ${index + 1 !== totalSteps ? 'mr-2' : ''}`}
+              index + 1 <= step ? "bg-blue-900" : "bg-gray-200"
+            } ${index + 1 !== totalSteps ? "mr-2" : ""}`}
           />
         ))}
       </div>
@@ -106,17 +124,25 @@ const ValuationForm = () => {
           animate={{ opacity: 1 }}
           className="space-y-4"
         >
-          <h3 className="text-xl font-semibold text-blue-900">Vehicle Details</h3>
+          <h3 className="text-xl font-semibold text-blue-900">
+            Vehicle Details
+          </h3>
           <div className="grid md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Model
               </label>
-                          <select className="w-full p-3 border border-gray-200 rounded-lg" placeholder="Select Volvo Model">
-                             
-                <option value="Model" className='text-gray-500'>Select Volvo Model</option>
+              <select
+                className="w-full p-3 border border-gray-200 rounded-lg"
+                placeholder="Select Volvo Model"
+              >
+                <option value="Model" className="text-gray-500">
+                  Select Volvo Model
+                </option>
                 {models.map((model) => (
-                  <option key={model} value={model} className='text-gray-500'>{model}</option>
+                  <option key={model} value={model} className="text-gray-500">
+                    {model}
+                  </option>
                 ))}
               </select>
             </div>
@@ -142,7 +168,9 @@ const ValuationForm = () => {
           animate={{ opacity: 1 }}
           className="space-y-4"
         >
-          <h3 className="text-xl font-semibold text-blue-900">Vehicle Condition</h3>
+          <h3 className="text-xl font-semibold text-blue-900">
+            Vehicle Condition
+          </h3>
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -159,11 +187,21 @@ const ValuationForm = () => {
                 Overall Condition
               </label>
               <select className="w-full p-3 border border-gray-200 rounded-lg text-gray-500">
-                <option value="" className='text-gray-500'>Select Condition</option>
-                <option value="excellent" className='text-gray-500'>Excellent</option>
-                <option value="good" className='text-gray-500'>Good</option>
-                <option value="fair" className='text-gray-500'>Fair</option>
-                <option value="poor" className='text-gray-500'>Poor</option>
+                <option value="" className="text-gray-500">
+                  Select Condition
+                </option>
+                <option value="excellent" className="text-gray-500">
+                  Excellent
+                </option>
+                <option value="good" className="text-gray-500">
+                  Good
+                </option>
+                <option value="fair" className="text-gray-500">
+                  Fair
+                </option>
+                <option value="poor" className="text-gray-500">
+                  Poor
+                </option>
               </select>
             </div>
           </div>
@@ -176,7 +214,9 @@ const ValuationForm = () => {
           animate={{ opacity: 1 }}
           className="space-y-4"
         >
-          <h3 className="text-xl font-semibold text-blue-900">Contact Information</h3>
+          <h3 className="text-xl font-semibold text-blue-900">
+            Contact Information
+          </h3>
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -222,10 +262,10 @@ const ValuationForm = () => {
           </button>
         )}
         <button
-          onClick={() => step < totalSteps ? setStep(step + 1) : null}
+          onClick={() => (step < totalSteps ? setStep(step + 1) : null)}
           className="px-6 py-2 bg-blue-900 text-white rounded-lg hover:bg-blue-800 ml-auto"
         >
-          {step === totalSteps ? 'Submit' : 'Next'}
+          {step === totalSteps ? "Submit" : "Next"}
         </button>
       </div>
     </div>
@@ -237,23 +277,26 @@ const ValuationSteps = () => {
     {
       icon: Car,
       title: "Vehicle Information",
-      description: "Provide details about your Volvo model, year, and specifications"
+      description:
+        "Provide details about your Volvo model, year, and specifications",
     },
     {
       icon: Search,
       title: "Expert Assessment",
-      description: "Our specialists evaluate your vehicle's condition and market position"
+      description:
+        "Our specialists evaluate your vehicle's condition and market position",
     },
     {
       icon: Calculator,
       title: "Detailed Valuation",
-      description: "Receive a comprehensive valuation report with market analysis"
+      description:
+        "Receive a comprehensive valuation report with market analysis",
     },
     {
       icon: CheckCircle2,
       title: "Professional Consultation",
-      description: "Discuss your options with our Volvo experts"
-    }
+      description: "Discuss your options with our Volvo experts",
+    },
   ];
 
   return (
@@ -268,7 +311,8 @@ const ValuationSteps = () => {
           Our Valuation Process
         </h2>
         <p className="text-gray-600">
-          Get an accurate valuation of your Volvo through our comprehensive process
+          Get an accurate valuation of your Volvo through our comprehensive
+          process
         </p>
       </motion.div>
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -285,7 +329,9 @@ const ValuationSteps = () => {
               <div className="bg-blue-900 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
                 <step.icon className="h-6 w-6" />
               </div>
-              <h3 className="text-xl font-semibold text-blue-900 mb-2">{step.title}</h3>
+              <h3 className="text-xl font-semibold text-blue-900 mb-2">
+                {step.title}
+              </h3>
               <p className="text-gray-600">{step.description}</p>
             </div>
           </motion.div>
@@ -301,20 +347,24 @@ const ValuationFAQ = () => {
   const faqs = [
     {
       question: "How long does the valuation process take?",
-      answer: "Our initial online valuation is instant. For a detailed physical inspection and comprehensive valuation, we typically require 1-2 hours of your time at our facility."
+      answer:
+        "Our initial online valuation is instant. For a detailed physical inspection and comprehensive valuation, we typically require 1-2 hours of your time at our facility.",
     },
     {
       question: "What factors affect my Volvo's value?",
-      answer: "Key factors include the model, year, mileage, overall condition, service history, modifications, and current market trends specific to Volvo vehicles."
+      answer:
+        "Key factors include the model, year, mileage, overall condition, service history, modifications, and current market trends specific to Volvo vehicles.",
     },
     {
       question: "Do you offer trade-in options?",
-      answer: "Yes, we offer competitive trade-in values for your Volvo against any vehicle in our inventory. Our specialists can discuss the best options for your situation."
+      answer:
+        "Yes, we offer competitive trade-in values for your Volvo against any vehicle in our inventory. Our specialists can discuss the best options for your situation.",
     },
     {
       question: "Is the valuation service free?",
-      answer: "Yes, our initial online valuation is completely free. If you proceed with a physical inspection for a detailed valuation report, our specialist will discuss any applicable fees."
-    }
+      answer:
+        "Yes, our initial online valuation is completely free. If you proceed with a physical inspection for a detailed valuation report, our specialist will discuss any applicable fees.",
+    },
   ];
 
   return (
@@ -368,18 +418,18 @@ const AdditionalServices = () => {
     {
       icon: Car,
       title: "Vehicle Sales",
-      description: "Browse our premium selection of Volvo vehicles"
+      description: "Browse our premium selection of Volvo vehicles",
     },
     {
       icon: Cog,
       title: "Maintenance",
-      description: "Expert Volvo servicing and repairs"
+      description: "Expert Volvo servicing and repairs",
     },
     {
       icon: Filter,
       title: "Genuine Parts",
-      description: "Authentic Volvo parts and accessories"
-    }
+      description: "Authentic Volvo parts and accessories",
+    },
   ];
 
   return (
@@ -410,7 +460,9 @@ const AdditionalServices = () => {
             <div className="text-blue-900 mb-4">
               <service.icon className="h-8 w-8" />
             </div>
-            <h3 className="text-xl font-semibold text-blue-900 mb-2">{service.title}</h3>
+            <h3 className="text-xl font-semibold text-blue-900 mb-2">
+              {service.title}
+            </h3>
             <p className="text-gray-600 mb-4">{service.description}</p>
             <Link
               to={`/services/${service.title.toLowerCase()}`}
@@ -482,7 +534,9 @@ const ContactSection = () => {
           </div>
         </div>
         <div className="bg-white rounded-xl p-6 text-gray-900">
-          <h3 className="text-xl font-semibold text-blue-900 mb-4">Schedule a Valuation</h3>
+          <h3 className="text-xl font-semibold text-blue-900 mb-4">
+            Schedule a Valuation
+          </h3>
           <form className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -500,7 +554,9 @@ const ContactSection = () => {
               <select className="w-full p-3 border border-gray-200 rounded-lg">
                 <option value="">Select Time</option>
                 <option value="morning">Morning (8:00 AM - 12:00 PM)</option>
-                <option value="afternoon">Afternoon (12:00 PM - 4:00 PM)</option>
+                <option value="afternoon">
+                  Afternoon (12:00 PM - 4:00 PM)
+                </option>
                 <option value="evening">Evening (4:00 PM - 6:00 PM)</option>
               </select>
             </div>

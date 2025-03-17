@@ -55,7 +55,7 @@ const HomePage = () => {
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </motion.button>
                           <motion.button
-                              onClick={() => navigate('/contact')}
+                              onClick={() => navigate('/thersh-motors-contact')}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold"
@@ -117,6 +117,9 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* Testimonials */}
+      <TestimonialsSection />
+
       {/* CTA Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
@@ -135,7 +138,7 @@ const HomePage = () => {
                 className="inline-block"
               >
                 <Link
-                  to="/contact"
+                  to="/thersh-motors-contact"
                   className="bg-white text-blue-900 px-8 py-3 rounded-full font-semibold flex items-center justify-center space-x-2 group"
                 >
                   <Phone className="h-4 w-4" />
@@ -191,21 +194,21 @@ const services = [
   {
     icon: Car,
         title: "Vehicle Sales",
-    link: "/vehicles",
+    link: "/volvo-vehicles",
     description:
       "Find your perfect Volvo from our carefully curated selection of premium vehicles",
   },
   {
     icon: HammerIcon,
       title: "Genuine Spares",
-    link: "/spares",
+    link: "/volvo-spares",
     description:
       "Access authentic Volvo parts ensuring optimal performance and reliability",
   },
   {
     icon: Calculator,
       title: "Expert Valuation",
-    link: "/valuation",
+    link: "/volvo-valuation",
     description:
       "Get accurate market valuations from our certified Volvo specialists",
   },

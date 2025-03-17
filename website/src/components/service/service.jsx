@@ -20,13 +20,16 @@ import {
   Clock4
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const ServicesPage = () => {
+  const navigate = useNavigate();
   const services = [
     {
       title: "Vehicle Diagnostics",
       description: "Comprehensive diagnostic services using latest Volvo-specific equipment",
       icon: Search,
+      link: "/thersh-motors-contact",
       features: [
         "Complete system scanning",
         "Error code interpretation",
@@ -38,6 +41,7 @@ const ServicesPage = () => {
       title: "Maintenance Service",
       description: "Regular maintenance and servicing to keep your Volvo in optimal condition",
       icon: Cog,
+      link: "/thersh-motors-contact",
       features: [
         "Scheduled maintenance",
         "Oil and filter changes",
@@ -49,6 +53,7 @@ const ServicesPage = () => {
       title: "Spare Parts Supply",
       description: "Genuine Volvo parts with warranty and expert installation",
       icon: Car,
+      link: "/thersh-motors-contact",
       features: [
         "Original Volvo parts",
         "Parts warranty",
@@ -60,6 +65,7 @@ const ServicesPage = () => {
       title: "Performance Upgrades",
       description: "Authorized Volvo performance enhancements and modifications",
       icon: Settings,
+      link: "/thersh-motors-contact",
       features: [
         "Engine optimization",
         "Suspension upgrades",
@@ -71,6 +77,7 @@ const ServicesPage = () => {
       title: "Body & Paint",
       description: "Professional body repairs and paint services for Volvo vehicles",
       icon: Shield,
+      link: "/thersh-motors-contact",
       features: [
         "Collision repairs",
         "Paint restoration",
@@ -82,6 +89,7 @@ const ServicesPage = () => {
       title: "Express Service",
       description: "Quick service solutions for busy Volvo owners",
       icon: Clock4,
+      link: "/thersh-motors-contact",
       features: [
         "Oil change service",
         "Battery replacement",
@@ -109,6 +117,7 @@ const ServicesPage = () => {
             </p>
             <motion.button
               whileHover={{ scale: 1.05 }}
+              onClick={()=>navigate("/thersh-motors-contact")}
               whileTap={{ scale: 0.95 }}
               className="bg-white text-blue-900 px-8 py-3 rounded-full font-semibold"
             >
@@ -208,8 +217,9 @@ const ServiceBenefit = ({ icon: Icon, title, description }) => {
   );
 };
 
-const ServiceCard = ({ title, description, icon: Icon, features, index }) => {
+const ServiceCard = ({ title, description, icon: Icon, features, index, link }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <motion.div
@@ -255,6 +265,7 @@ const ServiceCard = ({ title, description, icon: Icon, features, index }) => {
       <motion.button
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
+        onClick={() => navigate(link)}
         className="text-blue-900 font-medium flex items-center hover:space-x-2 transition-all"
       >
         <span>Book Service</span>

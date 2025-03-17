@@ -61,49 +61,69 @@ const TeamPage = () => {
   return (
     <div className="w-full bg-gray-50">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-r from-blue-900 to-blue-700">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center text-white">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">Meet Our Expert Team</h1>
-              <div className="w-24 h-1 bg-white mx-auto mb-8"></div>
-              <p className="text-xl text-blue-100">
-                Our team of dedicated Volvo specialists brings decades of combined experience
-                to provide exceptional service for all your Volvo needs.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-        <div className="absolute bottom-0 left-0 w-full">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" className="w-full">
-            <path
-              fill="#F9FAFB"
-              fillOpacity="1"
-              d="M0,64L80,58.7C160,53,320,43,480,53.3C640,64,800,96,960,96C1120,96,1280,64,1360,48L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"
-            ></path>
-          </svg>
-        </div>
-      </section>
+<section 
+  className="relative py-20 bg-no-repeat bg-cover bg-center"
+  style={{
+    backgroundImage: "url('/fleet.webp')",
+    backgroundBlendMode: "overlay",
+  }}
+>
+  {/* Gradient overlay for image */}
+  <div className="absolute inset-0 bg-gradient-to-r from-blue-900 to-blue-700 opacity-90"></div>
+  
+  <div className="container mx-auto px-4 relative z-10">
+    <div className="max-w-4xl mx-auto text-center text-white">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <h1 className="text-4xl md:text-5xl font-bold mb-6">Meet Our Expert Team</h1>
+        <div className="w-24 h-1 bg-white mx-auto mb-8"></div>
+        <p className="text-xl text-blue-100">
+          Our team of dedicated Volvo specialists brings decades of combined experience
+          to provide exceptional service for all your Volvo needs.
+        </p>
+      </motion.div>
+    </div>
+  </div>
+  
+  {/* Wave SVG at bottom */}
+  <div className="absolute bottom-0 left-0 w-full">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" className="w-full">
+      <path
+        fill="#F9FAFB"
+        fillOpacity="1"
+        d="M0,64L80,58.7C160,53,320,43,480,53.3C640,64,800,96,960,96C1120,96,1280,64,1360,48L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"
+      ></path>
+    </svg>
+  </div>
+</section>
 
       {/* Team Values */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">Our Team Values</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              At Thersh Motors, our team is guided by core principles that ensure we deliver consistent, 
-              exceptional service for your Volvo.
-            </p>
-          </motion.div>
+        <motion.div
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ duration: 0.8 }}
+  className="relative text-center mb-12 py-16 px-4 bg-no-repeat bg-cover bg-center"
+  style={{
+    backgroundImage: "url('/api/placeholder/1200/600')",
+    backgroundBlendMode: "overlay",
+  }}
+>
+  {/* Semi-transparent overlay for better text contrast */}
+  <div className="absolute inset-0 bg-blue-900 bg-opacity-75"></div>
+  
+  <div className="relative z-10">
+    <h2 className="text-3xl font-bold text-white mb-4">Our Team Values</h2>
+    <p className="text-white text-opacity-90 max-w-2xl mx-auto">
+      At Thersh Motors, our team is guided by core principles that ensure we deliver consistent, 
+      exceptional service for your Volvo.
+    </p>
+  </div>
+</motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <motion.div

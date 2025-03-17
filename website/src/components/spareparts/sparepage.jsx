@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { 
-  Car, Wrench, Calculator, Search, Filter, Phone, 
-  Mail, MapPin, Calendar, Clock, ArrowRight, 
-  Plus, Minus, Cog, Battery,
-  Settings
+  Search, Phone, ArrowRight,
+  Wrench, Cog, Settings, Battery
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
 
 const SparePartsPage = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -19,255 +16,221 @@ const SparePartsPage = () => {
       name: "Engine Components",
       icon: Wrench,
       items: [
-        { name: "Volvo D4/D5 Oil Filter Kit", price: 45, sku: "VOL-OF-D4D5" },
-        { name: "Volvo T5/T6 Air Filter Assembly", price: 65, sku: "VOL-AF-T5T6" },
-        { name: "Volvo XC90 Timing Belt Kit", price: 245, sku: "VOL-TB-XC90" },
-        { name: "Volvo S60 Turbocharger", price: 1200, sku: "VOL-TC-S60" }
+        { 
+          name: "Spark Plugs", 
+          price: 100, 
+          sku: "VOL-AF-T5T6",
+          image: "plugs.png"
+        },
+        { 
+          name: "Volvo D4/D5 Oil Filter Kit", 
+          price: 100, 
+          sku: "VOL-OF-D4D5",
+          image: "filter.png"
+        },
       ]
     },
     {
-      name: "Transmission Parts",
+      name: "Injectors",
       icon: Cog,
       items: [
-        { name: "Volvo Automatic Transmission Fluid", price: 55, sku: "VOL-ATF-01" },
-        { name: "Volvo XC60 Gearbox Mount", price: 125, sku: "VOL-GM-XC60" },
-        { name: "Volvo V90 Clutch Kit", price: 450, sku: "VOL-CK-V90" }
+        { 
+          name: "Injectors", 
+          price: 120, 
+          sku: "VOL-ATF-01",
+          image: "injectors.png"
+        }
       ]
     },
     {
-      name: "Brake System",
+      name: "Fuel Pump",
       icon: Settings,
       items: [
-        { name: "Volvo Premium Brake Pad Set", price: 95, sku: "VOL-BP-01" },
-        { name: "Volvo XC40 Brake Discs (Pair)", price: 180, sku: "VOL-BD-XC40" },
-        { name: "Volvo S90 Brake Caliper", price: 275, sku: "VOL-BC-S90" }
+        { 
+          name: "Fuel Pump", 
+          price: 300, 
+          sku: "VOL-BP-01",
+          image: "fuel-pump.png"
+        }
       ]
     },
     {
-      name: "Electrical Systems",
+      name: "Suspension Kit",
+      icon: Settings,
+      items: [
+        { 
+          name: "Suspension Kit", 
+          price: 650, 
+          sku: "VOL-BP-01",
+          image: "suspensionkit.png"
+        }
+      ]
+    },
+    {
+      name: "Steering Pump",
+      icon: Settings,
+      items: [
+        { 
+          name: "Steering Pump", 
+          price: 250, 
+          sku: "VOL-BP-01",
+          image: "steeringpump.png"
+        }
+      ]
+    },
+    {
+      name: "D5-Engine",
       icon: Battery,
       items: [
-        { name: "Volvo OEM Battery", price: 225, sku: "VOL-BAT-01" },
-        { name: "Volvo XC90 Alternator", price: 450, sku: "VOL-ALT-XC90" },
-        { name: "Volvo Starter Motor", price: 320, sku: "VOL-SM-01" }
+        { 
+          name: "D5-Engine", 
+          price: 2800, 
+          sku: "VOL-BAT-01",
+          image: "D5-engine.png"
+        }
       ]
     }
   ];
 
-  const volvoModels = [
-    "XC90", "XC60", "XC40",
-    "S90", "S60",
-    "V90", "V60",
-    "C40 Recharge"
-  ];
-
+  const volvoModels = ["XC90", "XC60", "XC40", "S90", "S60", "V90", "V60", "C40 Recharge"];
   const years = Array.from({ length: 20 }, (_, i) => 2024 - i);
 
-  return (
-    <div className="pt-20">
-      {/* Hero Section */}
-      <section className="relative bg-blue-900 py-20 text-white">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Genuine Volvo Spare Parts</h1>
-            <p className="text-xl text-blue-100 mb-8">
-              Maintain your Volvo's excellence with our comprehensive range of authentic spare parts
-            </p>
-            <div className="bg-white rounded-xl p-6">
-              <PartsSearchForm
-                searchQuery={searchQuery}
-                setSearchQuery={setSearchQuery}
-                selectedModel={selectedModel}
-                setSelectedModel={setSelectedModel}
-                selectedYear={selectedYear}
-                setSelectedYear={setSelectedYear}
-                volvoModels={volvoModels}
-                years={years}
-              />
-            </div>
-          </motion.div>
-        </div>
-      </section>
+  const filteredParts = useMemo(() => {
+    let parts = categories.flatMap(cat => cat.items);
+    
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      parts = parts.filter(part => 
+        part.name.toLowerCase().includes(query) || 
+        part.sku.toLowerCase().includes(query)
+      );
+    }
 
-      {/* Categories Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl font-bold text-blue-900 mb-4">Browse Parts by Category</h2>
-            <p className="text-gray-600">Explore our extensive collection of Volvo parts</p>
-          </motion.div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+    if (selectedCategory) {
+      parts = categories
+        .find(cat => cat.name === selectedCategory)
+        ?.items || [];
+    }
+
+    return parts;
+  }, [searchQuery, selectedCategory]);
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+<section 
+  className="relative py-16 px-4 bg-no-repeat bg-cover bg-center"
+  style={{
+    backgroundImage: "url('/home.jpeg')",
+    backgroundBlendMode: "overlay",
+  }}
+>
+  {/* Overlay to ensure text readability */}
+  <div className="absolute inset-0 bg-blue-900 bg-opacity-85"></div>
+  
+  <div className="relative z-10 max-w-6xl mx-auto">
+    <h1 className="text-4xl text-white font-bold mb-8 text-center">
+      Volvo Spare Parts Catalog
+    </h1>
+    <div className="bg-white rounded-xl p-6 shadow-lg">
+      <div className="flex flex-col md:flex-row gap-4">
+        <div className="flex-1">
+          <input
+            type="text"
+            placeholder="Search parts by name or SKU"
+            className="w-full p-3 rounded-lg border focus:ring-2 focus:ring-blue-900 focus:outline-none"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
+        <select
+          className="p-3 rounded-lg border focus:ring-2 focus:ring-blue-900 focus:outline-none"
+          value={selectedModel}
+          onChange={(e) => setSelectedModel(e.target.value)}
+        >
+          <option value="">Select Model</option>
+          {volvoModels.map((model) => (
+            <option key={model} value={model}>{model}</option>
+          ))}
+        </select>
+        <select
+          className="p-3 rounded-lg border focus:ring-2 focus:ring-blue-900 focus:outline-none"
+          value={selectedYear}
+          onChange={(e) => setSelectedYear(e.target.value)}
+        >
+          <option value="">Select Year</option>
+          {years.map((year) => (
+            <option key={year} value={year}>{year}</option>
+          ))}
+        </select>
+      </div>
+    </div>
+  </div>
+</section>
+
+      <section className="py-12 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {categories.map((category, index) => (
-              <PartsCategory
+              <motion.div
                 key={index}
-                {...category}
-                isSelected={selectedCategory === category.name}
-                onSelect={() => setSelectedCategory(category.name)}
-              />
+                whileHover={{ y: -5 }}
+                onClick={() => setSelectedCategory(category.name === selectedCategory ? null : category.name)}
+                className={`p-6 rounded-xl cursor-pointer transition-all ${
+                  category.name === selectedCategory ? 'bg-blue-900 text-white' : 'bg-white shadow-sm'
+                }`}
+              >
+                <div className="flex items-center space-x-4">
+                  <category.icon className="h-8 w-8" />
+                  <div>
+                    <h3 className="text-xl font-semibold">{category.name}</h3>
+                    <p className={category.name === selectedCategory ? 'text-blue-100' : 'text-gray-600'}>
+                      {category.items.length} items
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* Featured Parts */}
-      <section className="bg-gray-50 py-20">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="mb-12"
-          >
-            <h2 className="text-3xl font-bold text-blue-900 mb-4">Popular Volvo Parts</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {selectedCategory
-                ? categories
-                    .find(cat => cat.name === selectedCategory)
-                    ?.items.map((item, index) => (
-                      <PartCard key={index} {...item} />
-                    ))
-                : categories
-                    .flatMap(cat => cat.items)
-                    .slice(0, 6)
-                    .map((item, index) => (
-                      <PartCard key={index} {...item} />
-                    ))
-              }
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Parts Inquiry Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="bg-blue-900 rounded-3xl p-8 md:p-12 text-white">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl font-bold mb-6">Can't Find Your Part?</h2>
-              <p className="mb-8">
-                Our Volvo specialists are here to help you find the exact part you need
-              </p>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-white text-blue-900 px-8 py-3 rounded-full font-semibold inline-flex items-center space-x-2"
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredParts.map((part, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ y: -5 }}
+                className="bg-white rounded-xl shadow-sm overflow-hidden"
               >
-                <Phone className="h-5 w-5" />
-                <span>Contact Parts Department</span>
-              </motion.button>
-            </div>
+                <img
+                  src={part.image}
+                  alt={part.name}
+                  className="w-full h-48 object-cover bg-gray-100"
+                />
+                <div className="p-6">
+                  <h3 className="text-lg font-semibold text-blue-900 mb-2">{part.name}</h3>
+                  <p className="text-gray-600 mb-4">SKU: {part.sku}</p>
+                  <div className="flex items-center justify-between">
+                    <p className="text-2xl font-bold text-blue-900">${part.price}</p>
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="bg-blue-900 text-white px-4 py-2 rounded-lg flex items-center space-x-2"
+                    >
+                      <span>Details</span>
+                      <ArrowRight className="h-4 w-4" />
+                    </motion.button>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
+
+          {filteredParts.length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-gray-600 text-lg">No parts found matching your search criteria.</p>
+            </div>
+          )}
         </div>
       </section>
     </div>
-  );
-};
-
-const PartsSearchForm = ({
-  searchQuery,
-  setSearchQuery,
-  selectedModel,
-  setSelectedModel,
-  selectedYear,
-  setSelectedYear,
-  volvoModels,
-  years
-}) => {
-  return (
-    <div className="flex flex-col md:flex-row gap-4">
-      <div className="flex-1">
-        <input
-          type="text"
-          placeholder="Search parts by name or SKU"
-          className="w-full p-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-900 focus:outline-none placeholder:text-gray-600"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-      </div>
-      <select
-        className="p-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-900 focus:outline-none text-gray-600"
-        value={selectedModel}
-        onChange={(e) => setSelectedModel(e.target.value)}
-      >
-        <option value="" className='text-gray-600'>Select Model</option>
-        {volvoModels.map((model) => (
-          <option key={model} value={model} className='text-gray-600'>{model}</option>
-        ))}
-      </select>
-      <select
-        className="p-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-900 focus:outline-none text-gray-600"
-        value={selectedYear}
-        onChange={(e) => setSelectedYear(e.target.value)}
-      >
-        <option value="" className='text-gray-600'>Select Year</option>
-        {years.map((year) => (
-          <option key={year} value={year} className='text-gray-600'>{year}</option>
-        ))}
-      </select>
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        className="bg-blue-900 text-white px-6 py-3 rounded-lg flex items-center justify-center space-x-2"
-      >
-        <Search className="h-5 w-5" />
-        <span>Search</span>
-      </motion.button>
-    </div>
-  );
-};
-
-const PartsCategory = ({ name, icon: Icon, items, isSelected, onSelect }) => {
-  return (
-    <motion.div
-      whileHover={{ y: -5 }}
-      onClick={onSelect}
-      className={`p-6 rounded-xl cursor-pointer transition-all ${
-        isSelected ? 'bg-blue-900 text-white' : 'bg-white shadow-sm hover:shadow-md'
-      }`}
-    >
-      <div className="flex items-center space-x-4">
-        <Icon className="h-8 w-8" />
-        <div>
-          <h3 className="text-xl font-semibold">{name}</h3>
-          <p className={isSelected ? 'text-blue-100' : 'text-gray-600'}>
-            {items.length} items available
-          </p>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
-
-const PartCard = ({ name, price, sku }) => {
-  return (
-    <motion.div
-      whileHover={{ y: -5 }}
-      className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all"
-    >
-      <h3 className="text-lg font-semibold text-blue-900 mb-2">{name}</h3>
-      <p className="text-gray-600 mb-2">SKU: {sku}</p>
-      <div className="flex items-center justify-between">
-        <p className="text-2xl font-bold text-blue-900">${price}</p>
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="bg-blue-900 text-white px-4 py-2 rounded-lg flex items-center space-x-2"
-        >
-          <span>Inquire</span>
-          <ArrowRight className="h-4 w-4" />
-        </motion.button>
-      </div>
-    </motion.div>
   );
 };
 

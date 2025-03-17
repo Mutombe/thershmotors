@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Calendar, 
-  Clock, 
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Calendar,
+  Clock,
   ArrowRight,
   Car,
   Cog,
   MessageSquare,
-  AlertCircle
-} from 'lucide-react';
-import { Link } from 'react-router-dom';
+  AlertCircle,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
 // Add map-related components
 const LocationMap = () => {
@@ -20,7 +20,9 @@ const LocationMap = () => {
     <div className="bg-white rounded-xl shadow-sm overflow-hidden">
       <div className="p-6">
         <h3 className="text-xl font-bold text-blue-900 mb-4">Our Location</h3>
-        <p className="text-gray-600 mb-4">152 Nelson Mandela Ave, Harare, Zimbabwe</p>
+        <p className="text-gray-600 mb-4">
+          152 Nelson Mandela Ave, Harare, Zimbabwe
+        </p>
       </div>
       <div className="h-96 w-full">
         <iframe
@@ -30,7 +32,7 @@ const LocationMap = () => {
         />
       </div>
       <div className="p-4 bg-gray-50">
-        <a 
+        <a
           href="https://www.openstreetmap.org/?mlat=-17.83057&amp;mlon=31.03426#map=19/-17.83057/31.03426"
           target="_blank"
           rel="noopener noreferrer"
@@ -46,12 +48,12 @@ const LocationMap = () => {
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: 'general',
-    message: '',
-    preferredContact: 'email'
+    name: "",
+    email: "",
+    phone: "",
+    subject: "general",
+    message: "",
+    preferredContact: "email",
   });
 
   const handleSubmit = (e) => {
@@ -62,16 +64,21 @@ const ContactPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-blue-900 text-white py-20">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Thersh Motors</h1>
-            <p className="text-xl text-blue-100">Your trusted Volvo specialist in Harare</p>
-          </motion.div>
+      <section
+        className="relative py-16 px-4 bg-no-repeat bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/fleet.webp')",
+          backgroundBlendMode: "overlay",
+        }}
+      >
+        {/* Semi-transparent overlay for better text contrast */}
+        <div className="absolute inset-0 bg-blue-900 bg-opacity-80"></div>
+
+        <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-8 hieght-full">
+          {/* Your content will go here */}
+          <h2 className="text-3xl text-white font-bold mb-6 text-center">
+            Contact Thersh Motors
+          </h2>
         </div>
       </section>
 
@@ -82,11 +89,15 @@ const ContactPage = () => {
             {/* Contact Form */}
             <div className="lg:col-span-2">
               <div className="bg-white rounded-xl shadow-sm p-8">
-                <h2 className="text-2xl font-bold text-blue-900 mb-6">Send Us a Message</h2>
+                <h2 className="text-2xl font-bold text-blue-900 mb-6">
+                  Send Us a Message
+                </h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Name
+                      </label>
                       <input
                         type="text"
                         className="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-900 focus:outline-none"
@@ -94,7 +105,9 @@ const ContactPage = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Email
+                      </label>
                       <input
                         type="email"
                         className="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-900 focus:outline-none"
@@ -104,7 +117,9 @@ const ContactPage = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Service Required</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Service Required
+                    </label>
                     <select className="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-900 focus:outline-none">
                       <option value="valuation">Vehicle Valuation</option>
                       <option value="repair">Repair & Maintenance</option>
@@ -115,7 +130,9 @@ const ContactPage = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Message
+                    </label>
                     <textarea
                       rows="6"
                       className="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-900 focus:outline-none"
@@ -144,7 +161,9 @@ const ContactPage = () => {
             <div className="space-y-8">
               {/* Quick Contact */}
               <div className="bg-white rounded-xl shadow-sm p-8">
-                <h3 className="text-xl font-bold text-blue-900 mb-6">Quick Contact</h3>
+                <h3 className="text-xl font-bold text-blue-900 mb-6">
+                  Quick Contact
+                </h3>
                 <div className="space-y-4">
                   <ContactItem
                     icon={<Phone className="h-5 w-5" />}
@@ -166,9 +185,14 @@ const ContactPage = () => {
 
               {/* Business Hours */}
               <div className="bg-white rounded-xl shadow-sm p-8">
-                <h3 className="text-xl font-bold text-blue-900 mb-6">Business Hours</h3>
+                <h3 className="text-xl font-bold text-blue-900 mb-6">
+                  Business Hours
+                </h3>
                 <div className="space-y-3">
-                  <BusinessHourItem day="Monday - Friday" hours="8:00 AM - 5:00 PM" />
+                  <BusinessHourItem
+                    day="Monday - Friday"
+                    hours="8:00 AM - 5:00 PM"
+                  />
                   <BusinessHourItem day="Saturday" hours="9:00 AM - 2:00 PM" />
                   <BusinessHourItem day="Sunday" hours="Closed" />
                 </div>
@@ -177,8 +201,12 @@ const ContactPage = () => {
               {/* Emergency Service */}
               <div className="bg-blue-900 text-white rounded-xl shadow-sm p-8">
                 <AlertCircle className="h-8 w-8 mb-4" />
-                <h3 className="text-xl font-bold mb-2">24/7 Emergency Service</h3>
-                <p className="text-blue-100 mb-4">For urgent Volvo assistance outside business hours</p>
+                <h3 className="text-xl font-bold mb-2">
+                  24/7 Emergency Service
+                </h3>
+                <p className="text-blue-100 mb-4">
+                  For urgent Volvo assistance outside business hours
+                </p>
                 <div className="text-2xl font-bold">+263 78 203 2527</div>
               </div>
             </div>
@@ -189,7 +217,9 @@ const ContactPage = () => {
       {/* Services Overview */}
       <section className="py-20 bg-gray-100">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold text-blue-900 mb-12 text-center">Our Services</h2>
+          <h2 className="text-2xl font-bold text-blue-900 mb-12 text-center">
+            Our Services
+          </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <ServiceCard
               icon={<Car className="h-8 w-8" />}

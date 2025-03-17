@@ -170,12 +170,12 @@ const HomePage = () => {
   return (
     <div className="w-full">
      
-      {/*<HeroCarousel />*/}
+      {/* Hero section <HeroCarousel />*/}
       <section className="relative min-h-screen flex items-center">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-black/50 z-10" />
           <img
-            src="volvo.jpg"
+            src="home4.avif"
             alt="Volvo Fleet"
             className="w-full h-full object-cover"
           />

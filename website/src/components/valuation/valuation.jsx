@@ -419,16 +419,19 @@ const AdditionalServices = () => {
       icon: Car,
       title: "Vehicle Sales",
       description: "Browse our premium selection of Volvo vehicles",
+      link: "/volvo-vehicles",
     },
     {
       icon: Cog,
       title: "Maintenance",
       description: "Expert Volvo servicing and repairs",
+      link: "/volvo-spares",
     },
     {
       icon: Filter,
       title: "Genuine Parts",
       description: "Authentic Volvo parts and accessories",
+      link: "/volvo-spares",
     },
   ];
 
@@ -465,7 +468,7 @@ const AdditionalServices = () => {
             </h3>
             <p className="text-gray-600 mb-4">{service.description}</p>
             <Link
-              to={`/services/${service.title.toLowerCase()}`}
+              to={service.link}
               className="text-blue-900 font-medium flex items-center group-hover:space-x-2"
             >
               <span>Learn More</span>

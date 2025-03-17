@@ -10,6 +10,8 @@ import HomePage from './components/home/home.jsx';
 import ValuationPage from './components/valuation/valuation.jsx';
 import Navbar from './components/nav/nav.jsx';
 import ContactPage from './components/contact/contact.jsx';
+import TeamPage from './components/contact/team.jsx';
+import Reviews from './components/contact/reviews.jsx';
 import { useEffect } from 'react';
 
 const ScrollToTop = () => {
@@ -37,6 +39,8 @@ const App = () => {
               <Route path="/volvo-specialist-services" element={<UpdatedServicesPage />} />
               <Route path="/volvo-valuation" element={<ValuationPage />} />
               <Route path="/thersh-motors-contact" element={<ContactPage />} />
+              <Route path="/thersh-team" element={<TeamPage />} />
+              <Route path="/testimonials" element={<Reviews />} />
             </Routes>
           </AnimatePresence>
         </main>

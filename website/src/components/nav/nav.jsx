@@ -28,6 +28,8 @@ const Navigation = () => {
     { path: '/volvo-spares', label: 'Spare Parts' },
     { path: '/volvo-valuation', label: 'Valuation' },
     { path: '/thersh-motors-contact', label: 'Contact' },
+    { path: '/thersh-team', label: 'Team' },
+
   ];
 
   return (

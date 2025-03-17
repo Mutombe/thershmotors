@@ -3,9 +3,11 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
   Car,
+  Trophy,
   HammerIcon,
   Calculator,
   ArrowRight,
+  HeartHandshake,
   Star,
   Shield,
   Users,
@@ -92,30 +94,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="py-20 bg-blue-900 text-white">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center max-w-2xl mx-auto mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Why Choose Thersh Motors
-            </h2>
-            <p className="text-blue-100">
-              We deliver excellence through expertise, quality, and customer
-              satisfaction
-            </p>
-          </motion.div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <FeatureCard key={index} {...feature} />
-            ))}
-          </div>
-        </div>
-      </section>
+      <WhyChooseUs />
 
       {/* Testimonials */}
       <TestimonialsSection />
@@ -169,23 +148,11 @@ const ServiceCard = ({ icon: Icon, title, description, index, link }) => {
       <p className="text-gray-600 mb-4">{description}</p>
       <Link
         to={link}
-        className="text-blue-900 font-medium flex items-center group-hover:space-x-2"
+        className="text-blue-900 border-2 border-blue-900 px-4 py-2 rounded-full font-medium flex items-center group-hover:space-x-2"
       >
         <span>Learn More</span>
         <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-all" />
       </Link>
-    </motion.div>
-  );
-};
-
-const FeatureCard = ({ icon: Icon, title, description }) => {
-  return (
-    <motion.div whileHover={{ y: -5 }} className="text-center p-6">
-      <div className="bg-white/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-        <Icon className="h-8 w-8" />
-      </div>
-      <h3 className="text-xl font-semibold mb-2">{title}</h3>
-      <p className="text-blue-100">{description}</p>
     </motion.div>
   );
 };
@@ -214,30 +181,6 @@ const services = [
   },
 ];
 
-// Previous code remains the same until features array...
-
-const features = [
-  {
-    icon: Star,
-    title: "Expert Team",
-    description: "Certified Volvo specialists with years of experience",
-  },
-  {
-    icon: Shield,
-    title: "Genuine Parts",
-    description: "100% authentic Volvo components",
-  },
-  {
-    icon: Users,
-    title: "Customer First",
-    description: "Dedicated to exceeding your expectations",
-  },
-  {
-    icon: Clock,
-    title: "Quick Service",
-    description: "Efficient and timely service delivery",
-  },
-];
 
 // Add Testimonials Section
 const TestimonialsSection = () => {
@@ -418,6 +361,92 @@ const QuickContactForm = () => {
   );
 };
 
-// Update the main HomePage component to include new section
+
+
+const features = [
+  {
+    icon: Trophy,
+    title: "Quality Service",
+    description: "Premium automotive care with attention to detail",
+    link: "/volvo-specialist-services"
+  },
+  {
+    icon: Clock,
+    title: "Quick Turnaround",
+    description: "Efficient service without compromising quality",
+    link: "/thersh-motors-contact"
+  },
+  {
+    icon: Shield,
+    title: "Expert Team",
+    description: "Certified professionals with years of experience",
+    link: "/thersh-team"
+  },
+  {
+    icon: HeartHandshake,
+    title: "Customer First",
+    description: "Dedicated to exceeding your expectations",
+    link: "/testimonials"
+  }
+];
+
+const WhyChooseUs = () => {
+  return (
+    <section className="py-12 md:py-20 bg-blue-900 text-white">
+      <div className="container mx-auto px-4 sm:px-6">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-center max-w-2xl mx-auto mb-8 md:mb-12"
+        >
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4">
+            Why Choose Thersh Motors
+          </h2>
+          <p className="text-blue-100 text-sm sm:text-base">
+            We deliver excellence through expertise, quality, and customer satisfaction
+          </p>
+        </motion.div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
+          {features.map((feature, index) => (
+            <FeatureCard key={index} {...feature} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const FeatureCard = ({ icon: Icon, title, description, link }) => {
+  return (
+    <Link to={link}>
+      <motion.div 
+        whileHover={{ y: -5, scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        className="text-center p-4 sm:p-6 bg-blue-800/50 rounded-lg transition-colors hover:bg-blue-800/70"
+      >
+        <div className="bg-white/10 p-3 sm:p-4 rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center mx-auto mb-3 sm:mb-4">
+          <Icon className="h-6 w-6 sm:h-8 sm:w-8" />
+        </div>
+        <h3 className="text-lg sm:text-xl font-semibold mb-2">
+          {title}
+        </h3>
+        <p className="text-blue-100 text-sm sm:text-base">
+          {description}
+        </p>
+        <div className="mt-4 flex items-center justify-center text-blue-200 text-sm sm:text-base border border-blue-200 rounded-full px-4 py-2">
+          <span>Learn More</span>
+          <motion.span
+            className="ml-2"
+            initial={{ x: 0 }}
+            whileHover={{ x: 5 }}
+          >
+            →
+          </motion.span>
+        </div>
+      </motion.div>
+    </Link>
+  );
+};
 
 export default HomePage;
